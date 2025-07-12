@@ -2,27 +2,55 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import "./AppStyles.css";
 import NavBar from "./components/NavBar";
-import { BrowserRouter as Router, Routes } from "react-router";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { API_URL } from "./shared";
+import CampusList from "./components/CampusList";
+import Student from "./components/AddStudent";
+import SingleCampus from "./components/SingleCampus";
+import AddStudent from "./components/AddStudent";
+import SingleStudent from "./components/SingleStudent";
 
 const App = () => {
   return (
-    <div>
+    <div className="app-container">
       <NavBar />
-      <div className="app">
-        <h1>Hello React!</h1>
-        <img className="react-logo" src="/react-logo.svg" alt="React Logo" />
+      <div className="app-content">
+        <Routes>
+          <Route path="/" element={<h1 className="page-title">Home Page</h1>} />
 
-        <Routes>{/* Currently, we don't have any routes defined */}</Routes>
+          <Route
+            path="/campuses"
+            element={
+              <>
+                <h1 className="page-title">All Campuses</h1>
+                <CampusList />
+              </>
+            }
+          />
+
+          <Route
+            path="/campuses/:id"
+            element={
+              <>
+                <SingleCampus />
+              </>
+            }
+          />
+
+          <Route
+            path="/students/:id"
+            element={
+              <>
+                <SingleStudent />
+              </>
+            }
+          />
+        </Routes>
       </div>
     </div>
   );
 };
 
-// We're using React Router to handle the navigation between pages.
-// It's important that the Router is at the top level of our app,
-// and that we wrap our entire app in it. With this in place, we can
-// declare Routes, Links, and use useful hooks like useNavigate.
 const root = createRoot(document.getElementById("root"));
 root.render(
   <Router>
