@@ -5,10 +5,11 @@ import NavBar from "./components/NavBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { API_URL } from "./shared";
 import CampusList from "./components/CampusList";
-import Student from "./components/AddStudent";
 import SingleCampus from "./components/SingleCampus";
 import AddStudent from "./components/AddStudent";
 import SingleStudent from "./components/SingleStudent";
+import Login from "./pages/Login"; // Import Login page
+import Signup from "./pages/Signup"; // Import Signup page
 
 const App = () => {
   return (
@@ -45,6 +46,10 @@ const App = () => {
               </>
             }
           />
+
+          {/* Add Login and Signup routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </div>
     </div>
